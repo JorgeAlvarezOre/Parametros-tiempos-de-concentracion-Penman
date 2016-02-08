@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Parámetros, tiempos de concentración y Penman</title>
+<link rel='stylesheet' type='text/css' href='estilos.css' />
+<script type="text/javascript" src="zepto.min.js" ></script>
+<!--<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<script type="text/javascript" src="cordova.js"></script>
+</head>
+<body>
+<h1>INGRESO DE DATOS</h1>
+<h3>Ingresar parámetros base de la cuenca</h3>
+Perímetro de la cuenca
+<input id="Pr_in" type="number" value=434.06>km<br>
+Área de la cuenca
+<input id="Ar_in" type="number" value=4333.91>Km2<br>
+Longitud del río más largo
+<input id="Lc_in" type="number" value=155.89>Km<br>
+Altitud mayor de la cuenca
+<input id="HM_in" type="number" value=5400>msnm<br>
+Altitud menor de la cuenca
+<input id="Hm_in" type="number" value=0>msnm<br>
+Altitud mayor del río
+<input id="HMr_in" type="number" value=5300>msnm<br>
+Longitud total de ríos
+<input id="Li_in" type="number" value=2479.04>Km<br>
+Número total de ríos
+<input id="Tr_in" type="number" value=1289>ríos<br>
+Altitud media de cuenca
+<input id="Hmd_in" type="number" value=3096.32>msnm<br>
+Ríos de primer orden
+<input id="N1_in" type="number" value=737>ríos<br><br>
+
+<h3>Ingresar variables Penman de la estación</h3>
+Latitud 
+<input id="Lt_in" type="number" value=-15.5>°sexadecimales<br>
+Mes (completo)
+<input id="Mes_in" type="text" value="Enero"><br>
+Horas de sol mensual
+<input id="ns_in" type="number" value=155>horas<br>
+Temperatura
+<input id="TC_in" type="number" value=20.5>°C<br>
+Humedad relativa
+<input id="Hr_in" type="number" value=80>%<br>
+Albedo
+<input id="Ab_in" type="number" value=0.32><br>
+Velocidad del viento
+<input id="Vt_in" type="number" value=65>Km/día<br><br>
+
+Precisión de decimales
+<input id="decimales_in" type="number" value=4><br>
+<input id="formula_ch" type="checkbox">Mostrar fórmula</input><br>
+<br><button type="submit" id="Botón">CONSULTAR</button> <button type="button" id="Botón_borrar">BORRAR</button><br><br><br>
+
+<div id="respuestas">
+<div id="Título1"></div>
+<div id="Cuadro1"></div>
+<div id="Cuadro1a" class="CuadroFormula"></div>
+<div id="Cuadro2"></div>
+<div id="Cuadro2a" class="CuadroFormula"></div>
+<div id="Cuadro3"></div>
+<div id="Cuadro3a" class="CuadroFormula"></div>
+<div id="Cuadro4"></div>
+<div id="Cuadro4a" class="CuadroFormula"></div>
+<div id="Cuadro5"></div>
+<div id="Cuadro5a" class="CuadroFormula"></div>
+<div id="Cuadro6"></div>
+<div id="Cuadro6a" class="CuadroFormula"></div>
+<div id="Cuadro7"></div>
+<div id="Cuadro7a" class="CuadroFormula"></div>
+<div id="Cuadro8"></div>
+<div id="Cuadro8a" class="CuadroFormula"></div>
+<div id="Cuadro9"></div>
+<div id="Cuadro9a" class="CuadroFormula"></div>
+<div id="Cuadro10"></div>
+<div id="Cuadro10a" class="CuadroFormula"></div>
+<div id="Cuadro11"></div>
+<div id="Cuadro11a" class="CuadroFormula"></div>
+<div id="Cuadro12"></div>
+<div id="Cuadro12a" class="CuadroFormula"></div>
+<div id="Cuadro13"></div>
+<div id="Cuadro13a" class="CuadroFormula"></div>
+
+<div id="Título2"></div>
+<div id="Cuadro14"></div>
+<div id="Cuadro14a" class="CuadroFormula"></div>
+<div id="Cuadro15"></div>
+<div id="Cuadro15a" class="CuadroFormula"></div>
+<div id="Cuadro16"></div>
+<div id="Cuadro16a" class="CuadroFormula"></div>
+<div id="Cuadro17"></div>
+<div id="Cuadro17a" class="CuadroFormula"></div>
+<div id="Cuadro18"></div>
+<div id="Cuadro18a" class="CuadroFormula"></div>
+<div id="Cuadro20"></div>
+<div id="Cuadro20a" class="CuadroFormula"></div>
+<div id="Cuadro21"></div>
+<div id="Cuadro21a" class="CuadroFormula"></div>
+<div id="Cuadro22"></div>
+<div id="Cuadro22a" class="CuadroFormula"></div>
+<div id="Cuadro24"></div>
+<div id="Cuadro24a" class="CuadroFormula"></div>
+<div id="Cuadro25"></div>
+<div id="Cuadro25a" class="CuadroFormula"></div>
+<div id="Cuadro26"></div>
+<div id="Cuadro26a" class="CuadroFormula"></div>
+
+<div id="Título3"></div>
+<div id="Cuadro27"></div>
+<div id="Cuadro27a"></div>
+<div id="Cuadro28"></div>
+<div id="Cuadro28a"></div>
+<div id="Cuadro29"></div>
+<div id="Cuadro29a"></div>
+<div id="Cuadro30"></div>
+<div id="Cuadro30a"></div>
+<div id="Cuadro31"></div>
+<div id="Cuadro31a" class="CuadroFormula"></div>
+<div id="Cuadro32"></div>
+<div id="Cuadro32a" class="CuadroFormula"></div>
+<div id="Cuadro33"></div>
+<div id="Cuadro33a" class="CuadroFormula"></div>
+<div id="Cuadro34"></div>
+<div id="Cuadro34a" class="CuadroFormula"></div>
+<div id="Cuadro35"></div>
+<div id="Cuadro35a" class="CuadroFormula"></div>
+<div id="Cuadro36"></div>
+<div id="Cuadro36a" class="CuadroFormula"></div>
+</div>
+
+<script type="text/javascript">
+
+$(function(){
+	//Pulsa el botón "CONSULTAR" al estar en un campo input y presionar enter
+	$("input").keypress(function(e){
+		if (e.which === 13)
+			$("#Botón").click();
+	});
+	//Función al presionar el botón "CONSULAR"
+	$("#Botón").on('click', function(){
+		var Pr = document.getElementById('Pr_in').value;
+		var Ar = document.getElementById('Ar_in').value;
+		var Lc = document.getElementById('Lc_in').value;
+		var HM = document.getElementById('HM_in').value;
+		var Hm = document.getElementById('Hm_in').value;
+		var HMr = document.getElementById('HMr_in').value;
+		var Li = document.getElementById('Li_in').value;
+		var Tr = document.getElementById('Tr_in').value;
+		var Hmd = document.getElementById('Hmd_in').value;
+		var N1 = document.getElementById('N1_in').value;
+		
+		var Lt = document.getElementById('Lt_in').value;
+		var Mes = document.getElementById('Mes_in').value;
+		var di = 0;
+		var ns = document.getElementById('ns_in').value;
+		var TC = document.getElementById('TC_in').value;
+		var Hr = document.getElementById('Hr_in').value;
+		var Ab = document.getElementById('Ab_in').value;
+		var Vt = document.getElementById('Vt_in').value;
+		
+		var decimal = document.getElementById('decimales_in').value;
+		
+		
+		var IC = (0.28*Pr)/Math.pow(Ar,0.5);
+		var AM = Ar/Lc;
+		var FF = Ar/Math.pow(Lc,2);
+		var REL = 1.128*Math.pow(Ar,0.5)/Lc;
+		var LMY = Pr/4+Math.pow(Math.pow(Pr/4,2)-Ar,0.5);
+		var LMN = Pr/2-LMY;
+		var SC100c = (HM-Hm)/1000/LMY*100;
+		var SR100c = 100*(HMr-Hm)/(1000*Lc);
+		var DD = Li/Ar;
+		var FR = Tr/Ar;
+		var ES = Ar/(4*Li);
+		var CT = N1/Ar;
+		var CM = Hmd/Ar;
+		
+		var TcTM = 0.3*Math.pow((Lc/Math.pow(SR100c,0.25)),0.75);
+		var TcWLL=(58.5*Lc*0.6213712/(Math.pow(Ar,0.1)*Math.pow(SR100c,0.2)))/60;
+		var TcKP=0.066*Math.pow(Lc/Math.pow(SR100c/100,1/2),0.77);
+		var TcCK=60*0.0195*Math.pow(Math.pow(Lc,3)/(HM-Hm),0.385);
+		var TcGI=(4*Math.pow(Ar,1/2)+1.5*Lc)/(0.8*Math.pow(Hmd,1/2));
+		var TcVH=Lc/SR100c;
+		var TcBW=Lc/(1.5*Math.pow(4*Ar/Math.PI,1/2))*(Math.pow(Math.pow(Ar,2)/SR100c,1/5));
+		var TcPS=Lc/Math.pow(Ar,1/2)*Math.pow(Ar*Lc,1/3)/Math.pow(SR100c,1/2);
+		var TcDC=0.3*(Math.pow(Lc/Math.pow(SR100c/100,0.25),0.76));
+		var TcUSDA=3.3*Lc*1000*Math.pow((HM-Hm)/(Lc*1000),1/2);
+		var TcAG=0.0479*Math.pow(Ar,3)-0.3012*Math.pow(Ar,2)+0.7342*Ar+0.0336;
+		
+		var es = (0.6107*Math.pow(1+Math.pow(2,0.5)*Math.sin((TC/3)*(Math.PI/180)),8.827))*7.501875;
+		var Dg = -0.0000035702*Math.pow(TC,4) + 0.0003294008*Math.pow(TC,3) - 0.0072049357*Math.pow(TC,2) + 0.1229348193*TC + 0.4996471167;
+		switch(Mes) {
+			case "Enero":
+				var Ro = -0.1135*Math.pow(Lt,2) - 8.4867*Lt  + 851.3;
+				break;
+			case "Febrero":
+				var Ro = -0.1311*Math.pow(Lt,2) - 5.2113*Lt  + 878.94;
+				break;
+			case "Marzo":
+				var Ro = -0.1215*Math.pow(Lt,2) - 0.0367*Lt  + 885.7;
+				break;
+			case "Abril":
+				var Ro = -0.1123*Math.pow(Lt,2) + 4.3219*Lt + 854.32;
+				break;
+			case "Mayo":
+				var Ro = -0.0808*Math.pow(Lt,2) + 7.8954*Lt + 805.71;
+				break;
+			case "Junio":
+				var Ro = -0.0722*Math.pow(Lt,2) + 9.3876*Lt  + 784.69;
+				break;
+			case "Julio":
+				var Ro = -0.0719*Math.pow(Lt,2) + 8.6662*Lt + 796.25;
+				break;
+			case "Agosto":
+				var Ro = -0.095*Math.pow(Lt,2) + 5.5841*Lt  + 832.66;
+				break;
+			case "Septiembre":
+				var Ro = -0.128*Math.pow(Lt,2) + 0.8721*Lt  + 870.95;
+				break;
+			case "Octubre":
+				var Ro = -0.1216*Math.pow(Lt,2) - 3.6851*Lt  + 874.63;
+				break;
+			case "Noviembre":
+				var Ro = -0.119*Math.pow(Lt,2) - 7.6834*Lt  + 854.55;
+				break;
+			case "Diciembre":
+				var Ro = -0.1062*Math.pow(Lt,2) - 9.5639*Lt  + 834.14;
+				break;
+			default:
+				var Ro = 0;
+		}
+		switch(Mes) {
+			case "Enero":
+				var NN = 0.0004*Math.pow(Lt,2) - 0.0469*Lt  + 12.077;
+				break;
+			case "Febrero":
+				var NN = 0.0002*Math.pow(Lt,2) - 0.0299*Lt + 12.104;
+				break;
+			case "Marzo":
+				var NN = 0.0001*Math.pow(Lt,2) - 0.0029*Lt + 12.105;
+				break;
+			case "Abril":
+				var NN = -0.00003*Math.pow(Lt,2) + 0.0246*Lt  + 12.129;
+				break;
+			case "Mayo":
+				var NN = -0.0003*Math.pow(Lt,2) + 0.0432*Lt  + 12.141;
+				break;
+			case "Junio":
+				var NN = -0.0004*Math.pow(Lt,2) + 0.0551*Lt  + 12.135;
+				break;
+			case "Julio":
+				var NN = -0.0003*Math.pow(Lt,2) + 0.0483*Lt  + 12.115;
+				break;
+			case "Agosto":
+				var NN = -0.0002*Math.pow(Lt,2) + 0.0311*Lt  + 12.116;
+				break;
+			case "Septiembre":
+				var NN = 0.00007*Math.pow(Lt,2) + 0.0087*Lt  + 12.113;
+				break;
+			case "Octubre":
+				var NN = 0.0002*Math.pow(Lt,2) - 0.0185*Lt  + 12.101;
+				break;
+			case "Noviembre":
+				var NN = 0.0002*Math.pow(Lt,2) - 0.0441*Lt + 12.12;
+				break;
+			case "Diciembre":
+				var NN = 0.0004*Math.pow(Lt,2) - 0.0566*Lt  + 12.079;
+				break;
+			default:
+				var NN = 0;
+		}
+		switch(Mes) {
+			case "Enero":
+				var di = 31;
+				break;
+			case "Febrero":
+				var di = 28;
+				break;
+			case "Marzo":
+				var di = 31;
+				break;
+			case "Abril":
+				var di = 30;
+				break;
+			case "Mayo":
+				var di = 31;
+				break;
+			case "Junio":
+				var di = 30;
+				break;
+			case "Julio":
+				var di = 31;
+				break;
+			case "Agosto":
+				var di = 31;
+				break;
+			case "Septiembre":
+				var di = 30;
+				break;
+			case "Octubre":
+				var di = 31;
+				break;
+			case "Noviembre":
+				var di = 30;
+				break;
+			case "Diciembre":
+				var di = 31;
+				break;
+			default:
+				var di = 0;
+		}
+		var sT = 0.0000001191*Math.pow(+TC+273,4);
+		var ee = Hr/100*es;
+		var Ea = 0.35*(0.5+(Vt/160))*(es-ee);
+		var HH = (Ro/59)*(0.24+0.58*(ns/di/NN))*(1-Ab)-(sT/59)*(0.56-0.09*Math.pow(ee,0.5))*(0.09+0.1*(ns/di/NN));
+		var Ed = (Dg*HH+Ea)/(Dg+1);
+		var Em = Ed * di;
+		
+		var R1 = "Índice de compacidad: " + IC.toFixed(decimal) + " ";
+		var R1a = "(0.28*'Perímetro cuenca')/('Área cuenca'^0.5) = " + "(0.28*"+Pr+"Km)/("+Ar+"Km²^0.5)<pre></pre>";
+		var R2 = "Ancho medio: " + AM.toFixed(decimal) + " Km";
+		var R2a = "'Área cuenca'/'Longitud río ´principal' = " + Ar+"Km²/"+Lc+"Km<pre></pre>";
+		var R3 = "Factor de forma: " + FF.toFixed(decimal) + " ";
+		var R3a = "'Área cuenca'/('Longitud río principal'^2) = " + Ar+"Km²/("+Lc+"Km^2)<pre></pre>";
+		var R4 = "Relación Elongación: " + REL.toFixed(decimal) + " ";
+		var R4a = "(1.128*('Área cuenca'^0.5))/'Longitud río principal' = " + "(1.128*("+Ar+"Km²^0.5))/"+Lc+"Km<pre></pre>";
+		var R5 = "Lado mayor del rectangulo equivalente: " + LMY.toFixed(decimal) + " Km";
+		var R5a = "('Perímetro cuenca'/4)+(((('Perímetro cuenca'/4)^2)-'Área cuenca')^0.5) = " + "("+Pr+"Km/4)+(((("+Pr+"Km/4)^2)-"+Ar+"Km²)^0.5)<pre></pre>";
+		var R6 = "Lado menor del rectangulo equivalente: " + LMN.toFixed(decimal) + " Km";
+		var R6a = "'Perímetro cuenca'/2-'Lado mayor rectangulo equivalente' = " + Pr+"Km/2-"+LMY.toFixed(decimal)+"Km<pre></pre>";
+		var R7 = "Pendiente media de la cuenca: " + SC100c.toFixed(decimal) + " %";
+		var R7a = "('Altitud mayor cuenca'-'Altitud menor cuenca')/1000/'Lado mayor rectangulo equivalente'*100 = " + "("+HM+"m-"+Hm+"m)/1000/"+LMY.toFixed(decimal)+"Km*100<pre></pre>";
+		var R8 = "Pendiente media del río principal: " + SR100c.toFixed(decimal) + " %";
+		var R8a = "100*('Altitud mayor del río'-'Altitud menor cuenca')/(1000*'Longitud río principal') = " + "100*("+HMr+"m-"+Hm+"m)/(1000*"+Lc+"Km)<pre></pre>";
+		var R9 = "Densidad de drenaje: " + DD.toFixed(decimal) + " km/km2";
+		var R9a = "'Longitud total de ríos'/'Área cuenca' = " + Li+"Km/"+Ar+"Km²<pre></pre>";
+		var R10 = "Frecuencia de ríos: " + FR.toFixed(decimal) + " ríos/km2";
+		var R10a = "'Total de ríos'/'Área cuenca' = " + Tr+"ríos/"+Ar+"Km²<pre></pre>";
+		var R11 = "Extensión media de escurrimientos superficial: " + ES.toFixed(decimal) + " Km";
+		var R11a = "'Área cuenca'/(4*'Longitud total de ríos') = " + Ar+"Km²/(4*"+Li+"Km)<pre></pre>";
+		var R12 = "Coeficiente de torrencialidad: " + CT.toFixed(decimal) + " ríos/km2";
+		var R12a = "'Ríos de primer orden'/'Área cuenca' = " + N1+"ríos/"+Ar+"Km²<pre></pre>";
+		var R13 = "Coeficiente de masividad: " + CM.toFixed(decimal) + " m/km2";
+		var R13a = "'Altitud media cuenca'/'Área cuenca' = " + Hmd+"m/"+Ar+"Km²<pre></pre>";
+		
+		var R14 = "Tiempo de concentración (Témez): " + TcTM.toFixed(decimal) + " h";
+		var R14a = "0.3*('Longitud río principal'/('Pendiente río principal'^0.25))^0.75 = " + "0.3*(" + Lc + "Km/" + SR100c.toFixed(decimal) + "%^0.25)^0.75<pre></pre>";
+		var R15 = "Tiempo de concentración (Williams): " + TcWLL.toFixed(decimal) + " h";
+		var R15a = "(58.5*'Longitud río principal'*0.6213712/(('Área cuenca'^0.1)*('Pendiente río principal'^0.2)))/60 = " + "(58.5*" +Lc+ "Km*0.6213712/(("+Ar+"Km²^0.1)*("+SR100c.toFixed(decimal)+"%^0.2)))/60<pre></pre>";
+		var R16 = "Tiempo de concentración (Kirpich): " + TcKP.toFixed(decimal) + " h";
+		var R16a = "0.066*('Longitud río principal'/('Pendiente río principal'/100)^0.5)^0.77 = " + "0.066*("+Lc+"Km/("+SR100c.toFixed(decimal)+"%/100)^0.5)^0.77<pre></pre>";
+		var R17 = "Tiempo de concentración (California Kirpich): " + TcCK.toFixed(decimal) + " h";
+		var R17a = "60*0.0195*(('Longitud río principal'^3)/('Altitud mayor'-'Altitud menor'))^0.385 = " + "60*0.0195*(("+Lc+"Km^3)/("+HM+"m-"+Hm+"m))^0.385<pre></pre>";
+		var R18 = "Tiempo de concentración (Giandotti): " + TcGI.toFixed(decimal) + " h";
+		var R18a = "(4*('Área cuenca'^0.5)+(1.5*'Longitud río principal'))/(0.8*('Altitud media cuenca'^0.5)) = " + "(4*("+Ar+"Km²^0.5)+(1.5*"+Lc+"Km))/(0.8*("+Hmd+"m^0.5))<pre></pre>";
+		var R20 = "Tiempo de concentración (Ventura-Heras): " + TcVH.toFixed(decimal) + " h";
+		var R20a = "'Longitud río principal'/'Pendiente río principal' = " +Lc+"Km/"+SR100c.toFixed(decimal)+"%<pre></pre>";
+		var R21 = "Tiempo de concentración (Bransby-Williams): " + TcBW.toFixed(decimal) + " h";
+		var R21a = "'Longitud río principal'/(1.5*(4*'Área cuenca'/PI)^0.5)*((('Área cuenca'^2)/'Pendiente río principal')^0.5) = " + Lc+"Km/(1.5*(4*"+Ar+"Km²/"+Math.PI.toFixed(decimal)+")^0.5)*((("+Ar+"Km²^2)/"+SR100c.toFixed(decimal)+"%)^0.2)<pre></pre>";
+		var R22 = "Tiempo de concentración (Passini): " + TcPS.toFixed(decimal) + " h";
+		var R22a = "'Longitud río principal'/('Área cuenca'^0.5)*(('Área cuenca'*'Longitud río principal')^(1/3))/('Pendiente río principal'^0.5) = " + Lc+"Km/("+Ar+"Km²^0.5)*(("+Ar+"Km²*"+Lc+"km)^(1/3)/("+SR100c.toFixed(decimal)+"%^0.5))<pre></pre>";
+		var R24 = "Tiempo de concentración (Dirección general de carreteras " + TcDC.toFixed(decimal) + " h";
+		var R24a = "0.3*(('Longitud río principal'/('Pendiente río principal'/100)^0.25)^0.76) = " + "0.3*(("+Lc+"Km/("+SR100c.toFixed(decimal)+"%/100)^0.25)^0.76)<pre></pre>";
+		var R25 = "Tiempo de concentración (Soil Conservation Service - USDA): " + TcUSDA.toFixed(decimal) + " h";
+		var R25a = "3.3*'Longitud río principal'*1000*(('Altitud mayor'-'Altitud menor')/('Longitud río principal'*1000))^0.5 = " + "3.3*"+Lc+"Km*1000*(("+HM+"m-"+Hm+"m)/("+Lc+"Km*1000))^0.5<pre></pre>";
+		var R26 = "Tiempo de concentración (Agres): " + TcAG.toFixed(decimal) + " h";
+		var R26a = "0.0479*('Área cuenca'^3)-0.3012*('Área cuenca'^2)+0.7342*'Área cuenca'+0.0336 = " + "0.0479*("+Ar+"Km²^3)-0.3012*("+Ar+"Km²^2)+0.7342*"+Ar+"Km²+0.0336<pre></pre>";
+		
+		var R27 = "Presión de vapor saturante (es). Tabla 1: " + es.toFixed(decimal) + " mm";
+		var R28 = "Valores de ∆/g (Válido de 1-40°C). Tabla 3: " + Dg.toFixed(decimal);
+		var R29 = "Radiación Solar en límite superior de la atmósfera (Ro). Tabla 4: " + Ro.toFixed(decimal) + " Cal/(cm2*día)";
+		var R30 = "Máxima insolación diaria (N). Tabla 5: " + NN.toFixed(decimal) + "horas";
+		var R31 = "Valores de st^4 (Válido de 7-38.5°C). Tabla  6: " + sT.toFixed(decimal) + " Cal/(cm2*día)<pre></pre>";
+		var R32 = "Presion de vapor de agua (e): " + ee.toFixed(decimal) + " mmHg";
+		var R32a = "'Humedad relativa'/100*'Presión de vapor saturante (es)' = " + Hr+"%/100*"+es.toFixed(decimal)+"mm<pre></pre>";
+		var R33 = "Poder evaporante del aire (Ea): " + Ea.toFixed(decimal) + " mm/día";
+		var R33a = "0.35*(0.5+('Velocidad del viento'/160))*('Presión de vapor saturante (es)'-'Presion de vapor de agua (e)') = " + "0.35*(0.5+("+Vt+"'Km/día'/160))*("+es.toFixed(decimal)+"mm-"+ee.toFixed(decimal)+"mmHg)<pre></pre>";
+		var R34 = "Balance de energia (H): " + HH.toFixed(decimal) + " mm/día";
+		var R34a = "(Ro/59)*(0.24+0.58*('Horas de sol mensual'/'Días del mes'/N))*(1-Albedo)-(sT/59)*(0.56-0.09*(e^0.5))*(0.09+0.1*('Horas de sol mensual'/'Días del mes'/N)) = " + "("+Ro.toFixed(decimal)+"'Cal/(cm2*día)'/59)*(0.24+0.58*("+ns+"h/"+di+"días/"+NN.toFixed(decimal)+"h))*(1-"+Ab+")-("+sT.toFixed(decimal)+"'Cal/(cm2*día)'/59)*(0.56-0.09*("+ee.toFixed(decimal)+"mmHg^0.5))*(0.09+0.1*("+ns+"h/"+di+"días/"+NN.toFixed(decimal)+"h))<pre></pre>";
+		var R35 = "Evapotranspiracion diaria: " + Ed.toFixed(decimal) + " mm/día";
+		var R35a = "('Valores de ∆/g'*'Balance de energia (H)'+'Poder evaporante del aire (Ea)')/('Valores de ∆/g'+1) = " + "("+Dg.toFixed(decimal)+"*"+HH.toFixed(decimal)+"'mm/día'+"+Ea.toFixed(decimal)+"'mm/día')/("+Dg.toFixed(decimal)+"+1)<pre></pre>";
+		var R36 = "Evapotranspiracion mensual: " + Em.toFixed(decimal) + " mm/mes";
+		var R36a = "'Evapotranspiracion diaria' * 'días del mes' = " + Ed.toFixed(decimal)+"'mm/día'*"+di+"días<pre></pre>";
+		
+		$("#respuestas").show();
+		if (document.getElementById("formula_ch").checked) {
+			$(".CuadroFormula").show();
+		} else {
+			$(".CuadroFormula").hide();
+		}
+
+		$('#Cuadro1').html(R1);
+		$('#Cuadro1a').html(R1a);
+		$('#Cuadro2').html(R2);
+		$('#Cuadro2a').html(R2a);
+		$('#Cuadro3').html(R3);
+		$('#Cuadro3a').html(R3a);
+		$("#Cuadro4").html(R4);
+		$("#Cuadro4a").html(R4a);
+		$("#Cuadro5").html(R5);
+		$("#Cuadro5a").html(R5a);
+		$("#Cuadro6").html(R6);
+		$("#Cuadro6a").html(R6a);
+		$("#Cuadro7").html(R7);
+		$("#Cuadro7a").html(R7a);
+		$("#Cuadro8").html(R8);
+		$("#Cuadro8a").html(R8a);
+		$("#Cuadro9").html(R9);
+		$("#Cuadro9a").html(R9a);
+		$("#Cuadro10").html(R10);
+		$("#Cuadro10a").html(R10a);
+		$("#Cuadro11").html(R11);
+		$("#Cuadro11a").html(R11a);
+		$("#Cuadro12").html(R12);
+		$("#Cuadro12a").html(R12a);
+		$("#Cuadro13").html(R13);
+		$("#Cuadro13a").html(R13a);
+		
+		$("#Cuadro14").html(R14);
+		$("#Cuadro14a").html(R14a);
+		$("#Cuadro15").html(R15);
+		$("#Cuadro15a").html(R15a);
+		$("#Cuadro16").html(R16);
+		$("#Cuadro16a").html(R16a);
+		$("#Cuadro17").html(R17);
+		$("#Cuadro17a").html(R17a);
+		$("#Cuadro18").html(R18);
+		$("#Cuadro18a").html(R18a);
+		$("#Cuadro20").html(R20);
+		$("#Cuadro20a").html(R20a);
+		$("#Cuadro21").html(R21);
+		$("#Cuadro21a").html(R21a);
+		$("#Cuadro22").html(R22);
+		$("#Cuadro22a").html(R22a);
+		$("#Cuadro24").html(R24);
+		$("#Cuadro24a").html(R24a);
+		$("#Cuadro25").html(R25);
+		$("#Cuadro25a").html(R25a);
+		$("#Cuadro26").html(R26);
+		$("#Cuadro26a").html(R26a);
+		
+		$("#Cuadro27").html(R27);
+		$("#Cuadro28").html(R28);
+		$("#Cuadro29").html(R29);
+		$("#Cuadro30").html(R30);
+		$("#Cuadro31").html(R31);
+		$("#Cuadro32").html(R32);
+		$("#Cuadro32a").html(R32a);
+		$("#Cuadro33").html(R33);
+		$("#Cuadro33a").html(R33a);
+		$("#Cuadro34").html(R34);
+		$("#Cuadro34a").html(R34a);
+		$("#Cuadro35").html(R35);
+		$("#Cuadro35a").html(R35a);
+		$("#Cuadro36").html(R36);
+		$("#Cuadro36a").html(R36a);
+		
+		$("#Título1").html("<h2>PARÁMETROS FISIOGRÁFRICOS DE LA CUENCA</h2>");
+		$("#Título2").html("<h2>TIEMPO DE CONCENTRACIÓN DE LA CUENCA</h2>");
+		$("#Título3").html("<h2>EVAPOTRANSPIRACIÓN DE LA ESTACIÓN (PENMAN)</h2>");
+	});
+	//Cambia el atributo VALUE a CERO a las entradas INPUT exepto a la precisión de decimales y el mes. Esconde los resultados de la anterior consulta. Desactiva el checkbox #formula_ch
+	$("#Botón_borrar").on('click', function(){
+		$("#Pr_in").attr("value",0);
+		$("#Ar_in").attr("value",0);
+		$("#Lc_in").attr("value",0);
+		$("#HM_in").attr("value",0);
+		$("#Hm_in").attr("value",0);
+		$("#Li_in").attr("value",0);
+		$("#Tr_in").attr("value",0);
+		$("#Hmd_in").attr("value",0);
+		$("#N1_in").attr("value",0);
+		$("#Hmd_in").attr("value",0);
+		$("#Lt_in").attr("value",0);
+		$("#ns_in").attr("value",0);
+		$("#TC_in").attr("value",0);
+		$("#Hr_in").attr("value",0);
+		$("#Ab_in").attr("value",0);
+		$("#Vt_in").attr("value",0);
+		$("#formula_ch").prop("checked", false);
+		$('#respuestas').hide();
+	});
+});
+</script>
+</body>
+</html>
