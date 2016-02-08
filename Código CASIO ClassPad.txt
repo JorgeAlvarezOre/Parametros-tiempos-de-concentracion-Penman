@@ -1,0 +1,98 @@
+SetDecimal
+DefaultSetup
+Clear_a_z
+ClrText
+
+Input Lt,"Ingrese Latitud en sexadecimales","1/7":
+Input Mes,"Ingrese Mes del 01-12","2/7":
+Input ns,"Ingrese Horas de sol mensual","3/7":
+Input TCC,"Ingrese temperatura en °C","4/7":
+Input Hr,"Ingrese Humead relativa en %","5/7":
+Input Ab,"Ingrese Albedo del 0.00-1.00","6/7":
+Input Vt,"Ingrese Viento en Km/día","7/7":
+
+Print "Tabla 1 (es):":
+(0.6107*(1+2^0.5*sin((TCC/3)*(π/180)))^8.827)*7.501875⇒es
+Print es:
+
+Print "Tabla 3 (∆/g):":
+-0.0000035702*TCC^4 + 0.0003294008*TCC^3 - 0.0072049357*TCC^2 + 0.1229348193*TCC + 0.4996471167⇒Dg
+Print Dg:
+
+Print "Tabla 4 (Ro):":
+Switch Mes
+Case 1: -0.1135*Lt^2 - 8.4867*Lt  + 851.3⇒Ro:Break:
+Case 2: -0.1311*Lt^2 - 5.2113*Lt  + 878.94⇒Ro:Break:
+Case 3: -0.1215*Lt^2 - 0.0367*Lt  + 885.7⇒Ro:Break:
+Case 4: -0.1123*Lt^2 + 4.3219*Lt + 854.32⇒Ro:Break:
+Case 5: -0.0808*Lt^2 + 7.8954*Lt + 805.71⇒Ro:Break:
+Case 6: -0.0722*Lt^2 + 9.3876*Lt  + 784.69⇒Ro:Break:
+Case 7: -0.0719*Lt^2 + 8.6662*Lt + 796.25⇒Ro:Break:
+Case 8: -0.095*Lt^2 + 5.5841*Lt  + 832.66⇒Ro:Break:
+Case 9: -0.128*Lt^2 + 0.8721*Lt  + 870.95⇒Ro:Break:
+Case 10: -0.1216*Lt^2 - 3.6851*Lt  + 874.63⇒Ro:Break:
+Case 11: -0.119*Lt^2 - 7.6834*Lt  + 854.55⇒Ro:Break:
+Case 12: -0.1062*Lt^2 - 9.5639*Lt  + 834.14⇒Ro:Break:
+Default:0⇒Ro
+SwitchEnd
+Print Ro:
+
+Print "Tabla 5 (N):":
+Switch Mes
+Case 1: 0.0004*Lt^2 - 0.0469*Lt  + 12.077⇒NN:Break:
+Case 2: 0.0002*Lt^2 - 0.0299*Lt + 12.104⇒NN:Break:
+Case 3: 0.0001*Lt^2 - 0.0029*Lt + 12.105⇒NN:Break:
+Case 4: -0.00003*Lt^2 + 0.0246*Lt  + 12.129⇒NN:Break:
+Case 5: -0.0003*Lt^2 + 0.0432*Lt  + 12.141⇒NN:Break:
+Case 6: -0.0004*Lt^2 + 0.0551*Lt  + 12.135⇒NN:Break:
+Case 7: -0.0003*Lt^2 + 0.0483*Lt  + 12.115⇒NN:Break:
+Case 8: -0.0002*Lt^2 + 0.0311*Lt  + 12.116⇒NN:Break:
+Case 9: 0.00007*Lt^2 + 0.0087*Lt  + 12.113⇒NN:Break:
+Case 10: 0.0002*Lt^2 - 0.0185*Lt  + 12.101⇒NN:Break:
+Case 11: 0.0002*Lt^2 - 0.0441*Lt + 12.12⇒NN:Break:
+Case 12: 0.0004*Lt^2 - 0.0566*Lt  + 12.079⇒NN:Break:
+Default:0⇒NN
+SwitchEnd
+Print NN:
+
+Switch Mes
+Case 1: 31⇒di:Break:
+Case 2: 28⇒di:Break:
+Case 3: 31⇒di:Break:
+Case 4: 30⇒di:Break:
+Case 5: 31⇒di:Break:
+Case 6: 30⇒di:Break:
+Case 7: 31⇒di:Break:
+Case 8: 31⇒di:Break:
+Case 9: 30⇒di:Break:
+Case 10: 31⇒di:Break:
+Case 11: 30⇒di:Break:
+Case 12: 31⇒di:Break:
+Default:0⇒di
+SwitchEnd
+
+Print "Tabla 6:":
+0.0000001191*(TCC+273)^4⇒sT
+Print sT:
+
+Print " ":
+
+Print "ee:":
+Hr/100*es⇒ee
+Print ee:
+
+Print "Ea:":
+0.35*(0.5+(Vt/160))*(es-ee)⇒Ea
+Print Ea:
+
+Print "HH:":
+(Ro/59)*(0.24+0.58*(ns/di/NN))*(1-Ab)-(sT/59)*(0.56-0.09*(ee)^0.5)*(0.09+0.1*(ns/di/NN))⇒HH
+Print HH:
+
+Print "Evapotranspiración diaria:":
+(Dg*HH+Ea)/(Dg+1)⇒Ed
+Print Ed:
+
+Print "Evapotranspiración mensual:":
+Ed×di⇒Em
+Print Em:
