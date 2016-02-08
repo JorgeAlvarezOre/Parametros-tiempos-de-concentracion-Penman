@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head><title>Script</title>
+<meta charset="utf-8">
+</head>
+<body>
+<script src="math.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+Anhos=[42.9,25.2,28.5,40,49.3,30.2,27.1,36,27.4,48,39.5,27,40,21.5] //Años
+Tr=112.54 //Tiempo de retorno en años
+Tcn=3 //Tiempo de concentración en horas
+Arr=246 //Área de la cuenca en Km2
+CC=.55 //Corrección de escorrenía
+
+PrmAnhos=math.mean(Anhos); //promedio de los años
+DsAnhos=math.std(Anhos); //desviaciónestandar de los años
+NN=Anhos.length; //Número de años
+YN=-2*Math.pow(10,-12)*Math.pow(NN,6) + 9*Math.pow(10,-10)*Math.pow(NN,5) - 1*Math.pow(10,-7)*Math.pow(NN,4) + 1*Math.pow(10,-5)*Math.pow(NN,3) - 0.0004*Math.pow(NN,2) + 0.0105*(NN) + 0.4246; //Tabla. Depende del n�mero de a�os
+SigmaN=-1*Math.pow(10,-11)*Math.pow(NN,6) + 4*Math.pow(10,-9)*Math.pow(NN,5) - 6*Math.pow(10,-7)*Math.pow(NN,4) + 4*Math.pow(10,-5)*Math.pow(NN,3) - 0.0018*Math.pow(NN,2) + 0.0431*(NN) + 0.6599; //Tabla. Depende del n�mero de a�os
+Alfa=SigmaN/DsAnhos;
+Beta=PrmAnhos-(YN/Alfa);
+PPmax = Beta-(1/Alfa)*Math.log(-Math.log((Tr-1)/Tr)) //Precipitación máxima
+
+I24=PPmax/24
+Itc=I24*(Math.pow(24,0.5)/Tcn)
+if (Arr>13) {KK=1-Math.log10(Arr)/15;} else {KK=1;}
+Qd=0.278*CC*Itc*Arr*KK
+
+document.write("Promedio de los años: " + PrmAnhos + "<br>");
+document.write("Desviación estandar de los años: " + DsAnhos + "<br>");
+document.write("Número de años: " + NN + "<br>");
+document.write("YN: " + YN + "<br>");
+document.write("SigmaN: " + SigmaN + "<br>");
+document.write("Alfa: " + Alfa + "<br>");
+document.write("Beta: " + Beta + "<br>");
+document.write("<br>");
+document.write("Precipitación máxima: " + PPmax + "<br>");
+document.write("Intensidad en 24h: " + I24 + "<br>");
+document.write("Intensidad del tiempo: " + Itc + "<br>");
+document.write("K: " + KK + "<br>");
+document.write("Caudal máximo: "+ Qd + "<br>")
+
+</script>
+</body>
+</html>
