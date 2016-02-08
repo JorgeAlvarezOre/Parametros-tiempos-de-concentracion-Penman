@@ -1,0 +1,8 @@
+{
+  "name": "Parámetros fisiográficos y tiempo de concentración de una cuenca. Evapotranspiración de una estación por el Método de Penman",
+  "version": "2",
+  "window": {
+    "toolbar": false
+  },
+  "main": "index.html"
+}
